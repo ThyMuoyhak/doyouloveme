@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Khmer&display=swap" rel="stylesheet">
+    <title>Ask For Date</title>
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  .khmer-regular {
+    font-family: "Khmer", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+}
+h1{
+  color: red;
+  font-family: "Khmer", sans-serif;
+}
+
+.hide {
+  display: none;
+}
+
+body {
+  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(to right bottom, #cffafe, #22d3ee);
+  display: flex;
+  flex-direction: column;
+}
+
+.header-img {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin-inline: auto;
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.2));
+}
+
+.container {
+  flex: 1;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.image-1,
+.image-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-1 {
+  width: 500px;
+}
+
+.image-2 {
+  width: 500px;
+}
+
+.btn {
+  position: absolute;
+  top: calc(100% - 5rem);
+  min-width: 120px;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  outline: none;
+  border: none;
+  background-color: #f8fafc;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: "Khmer", sans-serif;
+}
+
+.btn:hover {
+  background-color: #e2e8f0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-family: "Khmer", sans-serif;
+}
+
+.btn-yes {
+  left: 50%;
+  transform: translateX(calc(-100% - 1rem));
+  z-index: 1;
+  font-family: "Khmer", sans-serif;
+}
+
+.btn-no {
+  left: calc(50% + 1rem);
+  transition: all 0.5s ease;
+  z-index: 2;
+  font-family: "Khmer", sans-serif;
+}
+
+    </style>
+  </head>
+  <body>
+    <center><h1>ស្រឡាញ់ខ្ញុំអត់?</h1></center>
+    <div class="container" id="container">
+      <img src="https://c.tenor.com/Uvb5h87sXdwAAAAC/shinchan.gif" alt="please" class="image-1" />
+      <img src="https://i.pinimg.com/originals/e9/d7/2e/e9d72ea63181338b0519471c8385ecc4.gif" alt="yes" class="image-2 hide" />
+      <button class="btn btn-yes">ចាស</button>
+      <button class="btn btn-no">ទេ</button>
+    </div>
+    <script src="">
+      const container = document.getElementById("container");
+const imageOne = document.querySelector(".image-1");
+const imageTwo = document.querySelector(".image-2");
+const btnYes = document.querySelector(".btn-yes");
+const btnNo = document.querySelector(".btn-no");
+
+function getRandomNumber(min, max) {
+  // Calculate the random number between min and max (inclusive)
+  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return randomNumber;
+}
+
+btnNo.addEventListener("mouseover", (event) => {
+  const containerHeight = container.getBoundingClientRect().height;
+  const containerWidth = container.getBoundingClientRect().width;
+  const btnHeight = btnNo.getBoundingClientRect().height;
+  const btnWidth = btnNo.getBoundingClientRect().width;
+  const btnTop = btnNo.getBoundingClientRect().top;
+  const btnLeft = btnNo.getBoundingClientRect().left;
+
+  let newTop = btnTop;
+  let newLeft = btnLeft;
+  while (Math.abs(newTop - btnTop) < containerHeight / 3) {
+    newTop = getRandomNumber(0, containerHeight - btnHeight);
+  }
+
+  while (Math.abs(newLeft - btnLeft) < containerWidth / 3) {
+    newLeft = getRandomNumber(0, containerWidth - btnWidth);
+  }
+
+  btnNo.style.top = Math.floor(newTop) + "px";
+  btnNo.style.left = Math.floor(newLeft) + "px";
+});
+
+btnYes.addEventListener("click", (e) => {
+  btnNo.classList.add("hide");
+  imageOne.classList.add("hide");
+  imageTwo.classList.remove("hide");
+});
+
+    </script>
+  </body>
+</html>
